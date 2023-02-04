@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Room;
 use App\Models\Type;
+use App\Models\Customer;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,8 @@ Route::get('rooms', function() {
  
 Route::get('room_types', function() {
     return Type::all();
+});
+
+Route::get('customers', function() {
+    return Customer::all();
 });
