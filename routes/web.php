@@ -19,6 +19,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Front\RoomReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,3 +100,9 @@ Route::get('/sendEvent', function () {
         // event(new NewReservationEvent($message, $superAdmin));
     }
 });
+
+
+/* ----------frontend ------------------- */
+
+Route::get('/chooseRoom', [RoomReservationController::class, 'chooseRoom']);
+Route::get('/{room}/{from}/{to}/confirmation', [RoomReservationController::class, 'confirmation']);

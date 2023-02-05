@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Room;
 use App\Models\Type;
 use App\Models\Customer;
+use App\Http\Controllers\Api\SearchController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +35,15 @@ Route::get('room_types', function() {
 Route::get('customers', function() {
     return Customer::all();
 });
+
+Route::get('/rooms', [SearchController::class, 'rooms']);
+
+
+Route::post('/search', [SearchController::class, 'search_room']);
+/*{
+    "check_in":"2023/06/15",
+    "check_out":"2023/06/30",
+    "count_person":3
+}*/
+
+
