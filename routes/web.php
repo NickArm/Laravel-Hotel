@@ -91,6 +91,7 @@ Route::post('/postLogin', [AuthController::class, 'postLogin'])->name('postlogin
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+
 Route::get('/sendEvent', function () {
     $superAdmins = User::where('role', 'Super')->get();
     event(new RefreshDashboardEvent("Someone reserved a room"));
@@ -104,5 +105,9 @@ Route::get('/sendEvent', function () {
 
 /* ----------frontend ------------------- */
 
-Route::get('/chooseRoom', [RoomReservationController::class, 'chooseRoom']);
-Route::get('/{room}/{from}/{to}/confirmation', [RoomReservationController::class, 'confirmation']);
+Route::get('/chooseRoom', [RoomReservationController::class, 'chooseRoom'])->name('front.chooseroom');
+Route::get('/{room}/{from}/{to}/confirmation', [RoomReservationController::class, 'confirmation'])->name('front.confirmation');
+Route::post('/{room}/payDownPayment', [RoomReservationController::class, 'payDownPayment'])->name('payDownPayment');
+
+
+Route::post('/getcustomerdata', [RoomReservationController::class, 'getcustomerdata']);

@@ -1,4 +1,4 @@
-@extends('template.master')
+@extends('template.front')
 @section('title', 'Count Person')
 @section('head')
     <link rel="stylesheet" href="{{ asset('style/css/progress-indication.css') }}">
@@ -64,4 +64,9 @@
 
         </div>
     </div>
+    @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
+        </div>
+    @endif
 @endsection

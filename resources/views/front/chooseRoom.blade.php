@@ -1,4 +1,4 @@
-@extends('template.master')
+@extends('template.front')
 @section('title', 'Choose Room Reservation')
 @section('head')
     <link rel="stylesheet" href="{{ asset('style/css/progress-indication.css') }}">
@@ -74,7 +74,7 @@
                                             <div class="wrapper">
                                                 <p class="card-text mb-auto demo-1">{{ $room->view }}</p>
                                             </div>
-                                            <a href="#" onclick="opencustomernowmdal();"
+                                            <a href="{{ route('front.confirmation', ['room' => $room->id, 'from' => request()->input('check_in'), 'to' => request()->input('check_out')]) }}"
                                                 class="btn myBtn shadow-sm border w-100 m-2">Choose</a>
                                         </div>
                                         <div class="col-auto d-none d-lg-block">
@@ -118,46 +118,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form action="/service_add" method="post">
-                        {{ csrf_field() }}
-                        <!-- Form Row-->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (first name)-->
-                            <div class="col-md-12">
-                                <label class="small mb-1" for="inputFirstName">Are you already customer of our hotel or you
-                                    want to registed, please enter your email below</label>
-                                <input class="form-control" id="name" name="name" type="text"
-                                    placeholder="Enter your email">
-                            </div>
-                            <!-- Form Group (last name)-->
-                        </div>
-                        <!-- Save changes button-->
-                        <a href="{{ route('transaction.reservation.confirmation', ['customer' => $customer->id, 'room' => $room->id, 'from' => request()->input('check_in'), 'to' => request()->input('check_out')]) }}"
-                            class="btn myBtn shadow-sm border w-100 m-2">Procced as Customer</a>
-
-
-                    </form>
-                    <h1> or </h1>
-                    <form action="/service_add" method="post">
-                        {{ csrf_field() }}
-                        <!-- Form Row-->
-
-                        <!-- Save changes button-->
-                        <button class="btn btn-primary" type="submit">Procced as Guest</button>
-
-                    </form>
-                </div>
             </div>
         </div>
     </div>
-
-    <script>
-        function opencustomernowmdal() {
-            $('#newserviceModal').modal('show');
-
-            //document.getElementById('servicetocustomer_id').value = id;
-        }
-    </script>
 @endsection
